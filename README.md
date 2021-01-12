@@ -9,6 +9,7 @@ Firebase云平台使用开发入门教学
 
 01. 课程介绍
 02. 服务器SDK安装 - Firebase Admin SDK
+03. 主机托管服务 - Hosting
 
 ## 课程文件
 
