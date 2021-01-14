@@ -5,6 +5,10 @@ Firebase云平台使用开发入门教学
 
 移动开发云服务Firebase的使用教学库，Google的又一精品服务
 
+## 视频链接(Youtube)
+
+https://www.youtube.com/playlist?list=PLliocbKHJNwtMa0AaYC7w5SuwhpbtcP5u
+
 ## 课程详细
 
 01. 课程介绍
