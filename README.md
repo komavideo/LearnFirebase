@@ -14,6 +14,7 @@ Firebase云平台使用开发入门教学
 05. 使用存储服务 - Storage
 06. 使用云函数 - Cloud Functions
 07. iOS联合开发 - 数据读取 - SwiftUI
+08. 操作数据的Web应用 - Cloud Firestore
 
 ## 课程文件
 

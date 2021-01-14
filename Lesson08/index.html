@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helo Firebase!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Helo Firebase!</h1>
+        <Button class="btn btn-primary" onclick="addData()">增加数据</Button>
+        <button class="btn btn-danger" onclick="clearData()">清除画面</button>
+        <button class="btn btn-success" onclick="loadData()">手动加载数据</button>
+        <hr>
+        <ul id="ulist">
+        </ul>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.2.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/8.2.2/firebase-firestore.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
+    <script>
+        var dataIndex = 1
+        ///////////////////////////////////////////////////////////////////////
+        let db = firebase.firestore();
+        db.collection("todos").orderBy("content", "asc")
+            .onSnapshot(function (querySnapshot) {
+                ulist = document.getElementById('ulist')
+                while (ulist.firstChild) {
+                    ulist.removeChild(ulist.firstChild);
+                }
+                querySnapshot.forEach(function (doc) {
+                    console.log(doc.id, " => ", doc.data());
+                    // 生成DOM
+                    var li = document.createElement('li');
+                    var text = document.createTextNode("[" + doc.id + "]" + doc.data().title + " => " + doc.data().content);
+                    li.appendChild(text);
+                    ulist.appendChild(li);
+                });
+            });
+        function addData() {
+            // Add a new document in collection "cities"
+            db.collection("todos").add({
+                title: "学习Firebase",
+                content: "买书看小马视频(" + (dataIndex++).toString() + ")",
+                finished: false,
+            })
+                .then(function () {
+                    console.log("Document successfully written!");
+                })
+                .catch(function (error) {
+                    console.error("Error writing document: ", error);
+                });
+        }
+        function loadData() {
+            ulist = document.getElementById('ulist')
+            while (ulist.firstChild) {
+                ulist.removeChild(ulist.firstChild);
+            }
+            db.collection("todos").orderBy("content", "asc").get()
+                .then(function (querySnapshot) {
+                    querySnapshot.forEach(function (doc) {
+                        console.log(doc.id, " => ", doc.data());
+                        // 生成DOM
+                        var li = document.createElement('li');
+                        var text = document.createTextNode("[" + doc.id + "]" + doc.data().title + " => " + doc.data().content);
+                        li.appendChild(text);
+                        ulist.appendChild(li);
+                    });
+                })
+                .catch(function (error) {
+                    console.log("Error getting documents: ", error);
+                });
+        }
+        function clearData() {
+            ulist = document.getElementById('ulist')
+            while (ulist.firstChild) {
+                ulist.removeChild(ulist.firstChild);
+            }
+        }
+    </script>
+</body>
+
+</html>
