@@ -15,6 +15,7 @@ Firebase云平台使用开发入门教学
 06. 使用云函数 - Cloud Functions
 07. iOS联合开发 - 数据读取 - SwiftUI
 08. 操作数据的Web应用 - Cloud Firestore
+09. Vite(Vue 3)托管Firebase主机服务 - Vue 3 + Firebase Hosting
 
 ## 课程文件
 
